@@ -1,7 +1,7 @@
 
 $(function(){
 
-    $.get('datas/datas.json',function(data){
+    $.get('/indexdata',function(data){
         //导航
         var listnav="";
         for(var i=0,len=data.navs.length; i<len; i++){

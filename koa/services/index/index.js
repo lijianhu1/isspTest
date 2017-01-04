@@ -1,7 +1,7 @@
 var request = require('request-promise');
 var path = require('path');
 module.exports = function (argvs) {
-    this.sso = function (argvs) {
+    this.index = function (argvs) {
         var rep = null;
         var options = {
             method: 'POST',

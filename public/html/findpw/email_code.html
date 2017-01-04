@@ -11,59 +11,59 @@
     <script src="/js/common.js"></script>
 </head>
 <body>
-    <div id="box">
-        <div class="header">
-            <p class="logo">
-                <a href="/"title="ISSP智能服务公共平台">ISSP智能服务公共平台</a>
-                <span>ISSP智能服务公共平台</span>
-            </p>
-        </div>
-        <div class="container">
-            <div class="found-password">
-                <div class="password-top">
-                    <svg role="img" class="key">
-                        <use xlink:href="#key"></use>
-                    </svg>
-                    <span>找回密码</span>
-                    <svg role="img" class="back">
-                        <use xlink:href="#back"></use>
-                    </svg>
-                </div>
-                <form method="post">
-                    <fieldset>
-                        <div class="password-center">
-                            <p>
-                                <label>账户邮箱:</label>
-                                <span>hjx_aj@163.com</span>
-                            </p>
-                            <p>
-                                <label>验证码:</label>
-                                <span>IKE020232</span>
-                            </p>
-                            <div class="send-code">
-                                <a href="javascript:void(0)">发送验证码</a>
-                            </div>
-                        </div>
-                        <div class="password-next">
-                            <button type="button" id="next" class="next-second disabled" disabled="disabled">下一步</button>
-                        </div>
-                    </fieldset>
-
-                </form>
+<div id="box">
+    <div class="header">
+        <p class="logo">
+            <a href="javascript:void(0)"title="ISSP智能服务公共平台">ISSP智能服务公共平台</a>
+            <span>ISSP智能服务公共平台</span>
+        </p>
+    </div>
+    <div class="container">
+        <div class="found-password">
+            <div class="password-top">
+                <svg role="img" class="key">
+                    <use xlink:href="#key"></use>
+                </svg>
+                <span>找回密码</span>
             </div>
-        </div>
-        <div class="footer">
-            <p class="foot-link">
-                <a href="javascript:void(0)">关于我们</a>|
-                <a href="javascript:void(0)">联系我们</a>|
-                <a href="javascript:void(0)">人才招聘</a>|
-                <a href="javascript:void(0)">商家入驻</a>|
-                <a href="javascript:void(0)">广告服务</a>|
-                <a href="javascript:void(0)">友情链接</a>|
-                <a href="javascript:void(0)">English Site</a>
-            </p>
-            <p class="copyright">Copyright&copy;2004-2016 <a href="javascript:void(0)">12345.com</a>版权所有</p>
+            <form method="post">
+                <fieldset>
+                    <div class="password-center">
+                        <p>
+                            <label>账户邮箱:</label>
+                            <span>hjx_aj@163.com</span>
+                        </p>
+                        <p>
+                            <label>验证码:</label>
+                            <span>IKE020232</span>
+                        </p>
+                        <div class="send-code">
+                            <input type="button" value="发送验证码" id="send-btn">
+                        </div>
+                    </div>
+                    <div class="password-next">
+                        <button type="button" id="prev" class="next-first" >上一步</button>
+                    </div>
+                </fieldset>
+
+            </form>
         </div>
     </div>
+    <div class="footer">
+        <p class="foot-link">
+            <a href="javascript:void(0)">关于我们</a>|
+            <a href="javascript:void(0)">联系我们</a>|
+            <a href="javascript:void(0)">人才招聘</a>|
+            <a href="javascript:void(0)">商家入驻</a>|
+            <a href="javascript:void(0)">广告服务</a>|
+            <a href="javascript:void(0)">友情链接</a>|
+            <a href="javascript:void(0)">English Site</a>
+        </p>
+        <p class="copyright">Copyright&copy;2004-2016 <a href="javascript:void(0)">12345.com</a>版权所有</p>
+    </div>
+</div>
 </body>
 </html>
+<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/findpassword.js"></script>

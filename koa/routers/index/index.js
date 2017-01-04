@@ -1,37 +1,22 @@
-var Router = require('koa-router');
-var app = require('koa')();
-var sendfile = require('koa-sendfile');
-var path = require('path');
-var loginSer = require(path.resolve('koa/services/' + path.basename(__dirname) + '/index.js'));
+const Router = require('koa-router');
+const app = require('koa')();
+const sendfile = require('koa-sendfile');
+const path = require('path');
+const indexSer = require(path.resolve('koa/services/' + path.basename(__dirname) + '/index.js'));
 
-module.exports = function (config) {
-    var router = new Router();
+module.exports = function () {
+    const router = new Router();
     router.get('/index', function *() {
-        var stats = yield (sendfile(this, path.resolve('public/html/'+path.basename(__dirname))+'/index.html'));
-        if (!this.status) {
-            this.throw(404);
-        }
-    }).post('/index', function *() {
-        var user = this.request.body;
+        yield sendfile(this, path.resolve('public/html/'+path.basename(__dirname))+'/index.html');
+
+    }).get('/indexdata', function *() {
         var $self = this;
-        yield (loginSer().sso(user)
-            .then(function (parsedBody) {
-                var responseText = JSON.parse(parsedBody);
-                if (responseText['errno'] == 0) {
-                    var token = JSON.parse(responseText['data'])['token'];
-                    $self.body = responseText;
-                    $self.cookies.set('token', token);
-                } else {
-                    $self.body = responseText;
-                }
-            }).catch(function (error) {
-                if (error.error && error.error.code && error.error.code =='ETIMEDOUT') {//登录超时
-                    $self.body = {'msg':'登录超时,请尝试重新登录.',errno:3};
-                    $self.status = 408;
-                }
-            }));
-
-    });
-
+        yield indexSer().index().then(function(parsedBody){
+            const responseText = JSON.parse(parsedBody);
+            $self.body = responseText;
+        })
+    }).get('/modules',function *(){
+        yield sendfile(this, path.resolve('public/html/'+path.basename(__dirname))+'/module.html');
+    })
     return router;
 };

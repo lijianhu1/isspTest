@@ -7,12 +7,11 @@ var koaBody = require('koa-body');
 var json = require('koa-json');
 var cors = require('koa-cors');
 const routersPath = '/koa/routers/';
-var config = require(path.resolve('plugins/read-config.js'))();//读取开发与生产环境配置文件
 
 
 //============路由跳转=============
 app.use(cors());//跨域请求,用于与browser-sync调试
-app.keys = ['feedback'];//session加密值
+app.keys = ['issp'];//session加密值
 app.use(session(app));//使用cookie
 app.use(koaBody());//必需要路由用之前使用,不然获取不到表单
 router.get('/', function *(next) {//根路由
@@ -22,10 +21,10 @@ router.get('/', function *(next) {//根路由
 
 
 
-app.use(require(path.join(__dirname,routersPath,'login/index.js'))(config).routes());//登录路由
-app.use(require(path.join(__dirname,routersPath,'findpw/index.js'))(config).routes());//找回密码
-app.use(require(path.join(__dirname,routersPath,'index/index.js'))(config).routes());//首页
-app.use(require(path.join(__dirname,routersPath,'error/index.js'))(config).routes());//错误路由
+app.use(require(path.join(__dirname,routersPath,'login/index.js'))().routes());//登录路由
+app.use(require(path.join(__dirname,routersPath,'findpw/index.js'))().routes());//找回密码
+app.use(require(path.join(__dirname,routersPath,'index/index.js'))().routes());//首页
+app.use(require(path.join(__dirname,routersPath,'error/index.js'))().routes());//错误路由
 
 //============路由跳转=============
 
@@ -48,5 +47,6 @@ app.use(function *(next) {
 
 
 app.listen(8888, function () {
-    console.log('koa server listening on port ' + 8888);
+    console.log('已开启服务：localhost: '+8888);
 });
+// module.exports = app;

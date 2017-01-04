@@ -18,30 +18,23 @@ module.exports = (config)=> {
             .then( (parsedBody)=> {
                 let responseText = JSON.parse(parsedBody);
                 let userData = responseText.users;//后台数据
-                console.info("后台数据：",responseText.users);
-                console.info("前台数据：",user);
+                // console.info("后台数据：",responseText.users);
+                // console.info("前台数据：",user);
                 $self.body = responseText;
-                if(user.username!==userData.username||user.password!==userData.password){
-                    $self.body={'msg':'账号或密码错误，请重新输入！',errno:2}
+                if(user.username==userData.username&&user.password==userData.password){
+                    $self.body = responseText;
+                    //设置cookie(signed加密)
+                    $self.cookies.set(responseText.users.username,responseText.users.password,{ signed: true });
 
                 }else {
-                    $self.body = responseText;
+                    $self.body={'msg':'账号或密码错误，请重新输入！',errno:2}
                 }
-                // if (responseText['errno'] == 0) {
-                //     var token = JSON.parse(responseText['data'])['token'];
-                //     $self.body = responseText;
-                //     $self.cookies.set('token', token);
-                // } else {
-                //     $self.body = responseText;
-                // }
             }).catch((error)=> {
                 if (error.error && error.error.code && error.error.code =='ETIMEDOUT') {//登录超时
                     $self.body = {'msg':'登录超时,请尝试重新登录.',errno:3};
                     $self.status = 408;
                 }
             }));
-
     });
-
     return router;
 };
